@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from functools import reduce
-from typing import Callable, TypeVar, overload
+from itertools import chain
+from typing import Any, Callable, TypeVar, overload
 
 T = TypeVar("T")
 T1 = TypeVar("T1")
@@ -100,7 +101,24 @@ def pipe(
     func6: Callable[[T5], T6],
     func7: Callable[[T6], T7],
     func8: Callable[[T7], T8],
+    *funcs: Callable[[T8], T8],
 ) -> T8:
+    ...
+
+
+@overload
+def pipe(
+    value: T,
+    func1: Callable[[T], T1],
+    func2: Callable[[T1], T2],
+    func3: Callable[[T2], T3],
+    func4: Callable[[T3], T4],
+    func5: Callable[[T4], T5],
+    func6: Callable[[T5], T6],
+    func7: Callable[[T6], T7],
+    func8: Callable[[T7], T8],
+    *funcs: Callable[[Any], Any],
+) -> Any:
     ...
 
 
@@ -114,13 +132,14 @@ def pipe(
     func6: Callable[[T5], T6] | None = None,
     func7: Callable[[T6], T7] | None = None,
     func8: Callable[[T7], T8] | None = None,
-) -> T | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8:
-    funcs = (
+    *funcs: Callable[[Any], Any],
+) -> T | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8 | Any:
+    numbered_funcs = (
         func
         for func in (func1, func2, func3, func4, func5, func6, func7, func8)
         if func is not None
     )
-    return reduce(pipe_reduce, funcs, value)
+    return reduce(pipe_reduce, chain(numbered_funcs, funcs), value)
 
 
 def pipe_reduce(val, func):
