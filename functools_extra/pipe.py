@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from functools import reduce
-from typing import Callable, Optional, TypeVar, Union, overload
+from typing import Callable, TypeVar, overload
 
 T = TypeVar("T")
 T1 = TypeVar("T1")
@@ -104,15 +106,15 @@ def pipe(
 
 def pipe(
     value: T,
-    func1: Optional[Callable[[T], T1]] = None,
-    func2: Optional[Callable[[T1], T2]] = None,
-    func3: Optional[Callable[[T2], T3]] = None,
-    func4: Optional[Callable[[T3], T4]] = None,
-    func5: Optional[Callable[[T4], T5]] = None,
-    func6: Optional[Callable[[T5], T6]] = None,
-    func7: Optional[Callable[[T6], T7]] = None,
-    func8: Optional[Callable[[T7], T8]] = None,
-) -> Union[T, T1, T2, T3, T4, T5, T6, T7, T8]:
+    func1: Callable[[T], T1] | None = None,
+    func2: Callable[[T1], T2] | None = None,
+    func3: Callable[[T2], T3] | None = None,
+    func4: Callable[[T3], T4] | None = None,
+    func5: Callable[[T4], T5] | None = None,
+    func6: Callable[[T5], T6] | None = None,
+    func7: Callable[[T6], T7] | None = None,
+    func8: Callable[[T7], T8] | None = None,
+) -> T | T1 | T2 | T3 | T4 | T5 | T6 | T7 | T8:
     funcs = (
         func
         for func in (func1, func2, func3, func4, func5, func6, func7, func8)
