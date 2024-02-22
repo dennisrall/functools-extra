@@ -13,6 +13,22 @@ python = ">=3.8"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.0.1"
 
+
+[tool.poetry.group.lint.dependencies]
+ruff = "^0.2.2"
+
+[tool.ruff.lint]
+select = [
+    "F", # pyflakes
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "C90", # mccabe complexity check
+    "I", # isort
+    "N", # pep8-naming
+    "B", # flake8-bugbear
+    "T20", # no prints
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
