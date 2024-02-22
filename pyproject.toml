@@ -25,11 +25,15 @@ python = ">=3.8"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^8.0.1"
+mypy = "^1.8.0"
 
 
 [tool.poetry.group.lint.dependencies]
 ruff = "^0.2.2"
-mypy = "^1.8.0"
+
+[tool.mypy]
+check_untyped_defs = true
+warn_unused_ignores = true
 
 [tool.ruff.lint]
 select = [
