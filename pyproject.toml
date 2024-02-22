@@ -29,6 +29,14 @@ select = [
     "T20", # no prints
     "UP", # pyupgrade: check for newer syntax
     "FA", # check future annotations are used
+    "COM", # commas
+    "C4", # better comprehensions
+    "ISC", # implicit string concat
+    "PL", # pylint
+    "RUF", # ruff
+]
+ignore = [
+    "PLR0913", # too many arguments
 ]
 
 [build-system]
