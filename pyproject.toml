@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "more-functools"
+name = "functools-extra"
 version = "0.1.0"
 description = ""
 authors = ["Dennis Rall <dennis.rall@web.de>"]
