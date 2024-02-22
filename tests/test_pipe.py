@@ -1,5 +1,5 @@
 import pytest
-from more_functools import pipe
+from functools_extra import pipe
 
 def add_one(x: int) -> int:
     return x + 1
