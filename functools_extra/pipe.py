@@ -1,5 +1,5 @@
-from typing import overload, TypeVar, Callable, Optional, Union
 from functools import reduce
+from typing import Callable, Optional, TypeVar, Union, overload
 
 T = TypeVar("T")
 T1 = TypeVar("T1")
@@ -11,46 +11,115 @@ T6 = TypeVar("T6")
 T7 = TypeVar("T7")
 T8 = TypeVar("T8")
 
+
 @overload
 def pipe(value: T) -> T:
     ...
+
 
 @overload
 def pipe(value: T, func1: Callable[[T], T1]) -> T1:
     ...
 
+
 @overload
 def pipe(value: T, func1: Callable[[T], T1], func2: Callable[[T1], T2]) -> T2:
     ...
 
-@overload
-def pipe(value: T, func1: Callable[[T], T1], func2: Callable[[T1], T2], func3: Callable[[T2], T3]) -> T3:
-    ...
 
 @overload
-def pipe(value: T, func1: Callable[[T], T1], func2: Callable[[T1], T2], func3: Callable[[T2], T3], func4: Callable[[T3], T4]) -> T4:
+def pipe(
+    value: T,
+    func1: Callable[[T], T1],
+    func2: Callable[[T1], T2],
+    func3: Callable[[T2], T3],
+) -> T3:
     ...
+
 
 @overload
-def pipe(value: T, func1: Callable[[T], T1], func2: Callable[[T1], T2], func3: Callable[[T2], T3], func4: Callable[[T3], T4], func5: Callable[[T4], T5]) -> T5:
+def pipe(
+    value: T,
+    func1: Callable[[T], T1],
+    func2: Callable[[T1], T2],
+    func3: Callable[[T2], T3],
+    func4: Callable[[T3], T4],
+) -> T4:
     ...
+
 
 @overload
-def pipe(value: T, func1: Callable[[T], T1], func2: Callable[[T1], T2], func3: Callable[[T2], T3], func4: Callable[[T3], T4], func5: Callable[[T4], T5], func6: Callable[[T5], T6]) -> T6:
+def pipe(
+    value: T,
+    func1: Callable[[T], T1],
+    func2: Callable[[T1], T2],
+    func3: Callable[[T2], T3],
+    func4: Callable[[T3], T4],
+    func5: Callable[[T4], T5],
+) -> T5:
     ...
+
 
 @overload
-def pipe(value: T, func1: Callable[[T], T1], func2: Callable[[T1], T2], func3: Callable[[T2], T3], func4: Callable[[T3], T4], func5: Callable[[T4], T5], func6: Callable[[T5], T6], func7: Callable[[T6], T7]) -> T7:
+def pipe(
+    value: T,
+    func1: Callable[[T], T1],
+    func2: Callable[[T1], T2],
+    func3: Callable[[T2], T3],
+    func4: Callable[[T3], T4],
+    func5: Callable[[T4], T5],
+    func6: Callable[[T5], T6],
+) -> T6:
     ...
+
 
 @overload
-def pipe(value: T, func1: Callable[[T], T1], func2: Callable[[T1], T2], func3: Callable[[T2], T3], func4: Callable[[T3], T4], func5: Callable[[T4], T5], func6: Callable[[T5], T6], func7: Callable[[T6], T7], func8: Callable[[T7], T8]) -> T8:
+def pipe(
+    value: T,
+    func1: Callable[[T], T1],
+    func2: Callable[[T1], T2],
+    func3: Callable[[T2], T3],
+    func4: Callable[[T3], T4],
+    func5: Callable[[T4], T5],
+    func6: Callable[[T5], T6],
+    func7: Callable[[T6], T7],
+) -> T7:
     ...
 
-def pipe(value: T, func1: Optional[Callable[[T], T1]] = None, func2: Optional[Callable[[T1], T2]] = None, func3: Optional[Callable[[T2], T3]] = None, func4: Optional[Callable[[T3], T4]] = None, func5: Optional[Callable[[T4], T5]] = None, func6: Optional[Callable[[T5], T6]] = None, func7: Optional[Callable[[T6], T7]] = None, func8: Optional[Callable[[T7], T8]] = None) -> Union[T, T1, T2, T3, T4, T5, T6, T7, T8]:
-    funcs = (func for func in (func1, func2, func3, func4, func5, func6, func7, func8) if func is not None)
+
+@overload
+def pipe(
+    value: T,
+    func1: Callable[[T], T1],
+    func2: Callable[[T1], T2],
+    func3: Callable[[T2], T3],
+    func4: Callable[[T3], T4],
+    func5: Callable[[T4], T5],
+    func6: Callable[[T5], T6],
+    func7: Callable[[T6], T7],
+    func8: Callable[[T7], T8],
+) -> T8:
+    ...
+
+
+def pipe(
+    value: T,
+    func1: Optional[Callable[[T], T1]] = None,
+    func2: Optional[Callable[[T1], T2]] = None,
+    func3: Optional[Callable[[T2], T3]] = None,
+    func4: Optional[Callable[[T3], T4]] = None,
+    func5: Optional[Callable[[T4], T5]] = None,
+    func6: Optional[Callable[[T5], T6]] = None,
+    func7: Optional[Callable[[T6], T7]] = None,
+    func8: Optional[Callable[[T7], T8]] = None,
+) -> Union[T, T1, T2, T3, T4, T5, T6, T7, T8]:
+    funcs = (
+        func
+        for func in (func1, func2, func3, func4, func5, func6, func7, func8)
+        if func is not None
+    )
     return reduce(pipe_reduce, funcs, value)
+
 
 def pipe_reduce(val, func):
     return func(val)
-
