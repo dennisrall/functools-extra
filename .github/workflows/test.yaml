@@ -25,5 +25,7 @@ jobs:
       run: poetry run ruff check functools_extra tests
     - name: Check format
       run: poetry run ruff format --check functools_extra tests
+    - name: Run mypy
+      run: poetry run mypy functools_extra tests
     - name: Run pytest
       run: poetry run pytest tests
