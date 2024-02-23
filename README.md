@@ -1,12 +1,13 @@
 # Functools Extra
-[![PyPi](https://img.shields.io/pypi/v/functools-extra?color=%2334D058&label=pypi)]
-[![Supported Python versions]](https://img.shields.io/pypi/pyversions/functools-extra.svg?color=%2334D058)
+![PyPi](https://img.shields.io/pypi/v/functools-extra?color=%2334D058&label=pypi)
+![Supported Python versions](https://img.shields.io/pypi/pyversions/functools-extra.svg?color=%2334D058)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
 Additional functional tools for python not covered in the [functools](https://docs.python.org/3/library/functools.html) library.
 
 ## Installation
 
-```console
+```bash
 pip install functools-extra
 
 ```
@@ -30,23 +31,23 @@ assert pipe(range(3), list, itemgetter(2), add_one) == 3
 ## Development
 The project is built with [poetry](https://python-poetry.org/).
 Check out the project and run
-```console
+```bash
 poetry install
 ```
 to install the dependencies. After that you can run
-```console
+```bash
 poetry run pytest tests
 ```
 to run the tests,
-```console
+```bash
 poetry run ruff format functools_extra tests --check
 ```
 to check that the code is formatted correctly,
-```console
+```bash
 poetry run ruff format functools_extra tests
 ```
 to format your code with ruff and
-```console
+```bash
 poetry run ruff check functools_extra tests
 ```
 to lint the project.
