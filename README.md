@@ -17,6 +17,7 @@ pip install functools-extra
 A pipe is a function that takes a value and list of functions and calls them in order.
 So `foo(bar(value))` is equivalent to `pipe(value, bar, foo)`.
 You can use built-in functions like `list`, special operators from the [operator](https://docs.python.org/3/library/operator.html) module or custom functions.
+All type-hints are preserved.
 ```python
 from functools_extra import pipe
 from operator import itemgetter
