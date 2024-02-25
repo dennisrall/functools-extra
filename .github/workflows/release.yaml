@@ -17,10 +17,6 @@ jobs:
     steps:
     - name: Checkout project
       uses: actions/checkout@v4
-    - name: Set up Python 3.12
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.12
     - name: Install Rye
       uses: sksat/setup-rye@v0.15.0
     - name: Export tag
