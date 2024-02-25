@@ -15,17 +15,13 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install and configure Poetry
-      uses: abatilo/actions-poetry@v3
-      with:
-        poetry-version: '1.7.1'
+    - name: Install Rye
+      uses: sksat/setup-rye@v0.15.0
+    - name: Pin python version to rye
+      run: rye pin ${{ matrix.python-version }}
     - name: Install dependencies
-      run: poetry install
+      run: rye sync --no-lock
     - name: Lint
-      run: poetry run ruff check functools_extra tests
-    - name: Check format
-      run: poetry run ruff format --check functools_extra tests
-    - name: Run mypy
-      run: poetry run mypy functools_extra tests
-    - name: Run pytest
-      run: poetry run pytest tests
+      run: rye run lint
+    - name: Run tests
+      run: rye run test

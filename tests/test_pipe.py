@@ -2,7 +2,6 @@ from functools import partial
 from operator import add, mul
 
 import pytest
-
 from functools_extra import pipe
 
 add_one = partial(add, 1)

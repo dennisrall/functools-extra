@@ -1,7 +1,8 @@
 # Functools Extra
-![PyPi](https://img.shields.io/pypi/v/functools-extra?color=%2334D058&label=pypi)
-![Supported Python versions](https://img.shields.io/pypi/pyversions/functools-extra.svg?color=%2334D058)
+[![PyPi](https://img.shields.io/pypi/v/functools-extra?color=%2334D058&label=pypi)](https://pypi.org/project/functools-extra/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/functools-extra.svg?color=%2334D058)](https://pypi.org/project/functools-extra/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Rye](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/mitsuhiko/rye/main/artwork/badge.json)](https://rye-up.com/)
 
 Additional functional tools for python not covered in the [functools](https://docs.python.org/3/library/functools.html) library.
 
@@ -44,29 +45,24 @@ assert add_one_and_double(2) == 6
 ```
 
 ## Development
-The project is built with [poetry](https://python-poetry.org/).
+This project is using [Rye](https://rye-up.com/).
 Check out the project and run
 ```bash
-poetry install
+rye sync
 ```
-to install the dependencies. After that you can run
+to create a virtual environment and install the dependencies. After that you can run
 ```bash
-poetry run pytest tests
+rye run test
 ```
 to run the tests,
 ```bash
-poetry run ruff format functools_extra tests --check
+rye run lint
 ```
-to check that the code is formatted correctly,
+to check the linting,
 ```bash
-poetry run ruff format functools_extra tests
+rye run fix
 ```
-to format your code with ruff and
-```bash
-poetry run ruff check functools_extra tests
-```
-to lint the project.
-
+to format the project with ruff and fix the fixable errors.
 
 ## License
 
